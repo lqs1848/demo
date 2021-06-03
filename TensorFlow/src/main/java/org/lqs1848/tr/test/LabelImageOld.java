@@ -41,7 +41,7 @@ import org.tensorflow.TensorFlow;
 import org.tensorflow.types.UInt8;
 
 /** Sample use of the TensorFlow Java API to label images using a pre-trained model. */
-public class LabelImage {
+public class LabelImageOld {
 
   public static void main(String[] args) {
 	  

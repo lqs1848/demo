@@ -16,7 +16,7 @@ import org.tensorflow.proto.framework.SignatureDef;
 import org.tensorflow.proto.framework.TensorInfo;
 import org.tensorflow.types.TFloat32;
 
-public class LabelImage2 {
+public class LabelImageNew {
 
 	public static void main(String[] args) {
 		String modelDir = "D:\\Workspace\\test\\src\\main\\resources\\models\\";

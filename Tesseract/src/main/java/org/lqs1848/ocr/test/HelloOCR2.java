@@ -9,41 +9,59 @@ import org.bytedeco.leptonica.PIX;
 import org.bytedeco.leptonica.global.lept;
 import org.bytedeco.tesseract.TessBaseAPI;
 
-public class HelloOCR {
+public class HelloOCR2 {
+	
 	public static void main(String[] args) throws Exception {
 		long startTime = System.currentTimeMillis();
-		getNumber("E:\\ocr.jpg");
-		getNumber("E:\\ocr.jpg");
-		getNumber("E:\\ocr.jpg");
+		getNumber();
 		System.out.println("time:"+(System.currentTimeMillis() - startTime));
 	}
 	
-	public static String getNumber(String picPath) throws IOException {
+	public static String getNumber() throws IOException {
 		BytePointer outText;
         TessBaseAPI api = new TessBaseAPI();
-    	String path = HelloOCR.class.getClassLoader().getResource("").toExternalForm();
+    	String path = HelloOCR2.class.getClassLoader().getResource("").toExternalForm();
     	path = path.replaceFirst("file:", "");
 		if ((path.indexOf(":") != -1 && path.startsWith("\\")) || path.startsWith("/")) 
 			path = path.substring(1);
     	System.out.println("path:"+path);
-        //String path = "D:\\Workspace\\OCR\\src\\main\\resources";
         if (api.Init(path, "chi_sim") != 0) {
             System.err.println("Could not initialize tesseract.");
             return null;
         }
         api.SetVariable("tessedit_char_whitelist", "0123456789");
-//	        api.SetVariable("classify_bln_numeric_mode", "1");
         
-        File f = new File(picPath);
+        
+        File f = new File("E:\\ocr.jpg");
         byte[] bts = getFileByteArray(f);
         PIX image = lept.pixReadMem(bts, bts.length);
-        //PIX image = lept.pixRead(picPath);
         api.SetImage(image);
         outText = api.GetUTF8Text();
         System.out.println("OCR output:\n" + outText.getString());
         outText.deallocate();
         outText.close();
         lept.pixDestroy(image);
+        api.Clear();
+        
+        image = lept.pixReadMem(bts, bts.length);
+        api.SetImage(image);
+        outText = api.GetUTF8Text();
+        System.out.println("OCR output:\n" + outText.getString());
+        outText.deallocate();
+        outText.close();
+        lept.pixDestroy(image);
+        api.Clear();
+        
+        image = lept.pixReadMem(bts, bts.length);
+        api.SetImage(image);
+        outText = api.GetUTF8Text();
+        System.out.println("OCR output:\n" + outText.getString());
+        outText.deallocate();
+        outText.close();
+        lept.pixDestroy(image);
+        api.Clear();
+        
+        
         api.End();
         api.close();
         return "ok";

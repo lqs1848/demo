@@ -8,10 +8,8 @@ import net.sourceforge.tess4j.TesseractException;
 
 public class HelloOCR {
 	public static void main(String[] args) throws Exception {
-		
 		getNumber("E:\\ocr.jpg");
 		getNumber("E:\\test.jpg");
-		
 	}
 	
 	public static String getNumber(String picPath) {
@@ -28,6 +26,7 @@ public class HelloOCR {
 
         //chi_sim ：简体中文， eng    根据需求选择语言库
         instance.setLanguage("chi_sim");
+        //只识别数字
         instance.setTessVariable("tessedit_char_whitelist", "0123456789");
         String result = null;
         try {
