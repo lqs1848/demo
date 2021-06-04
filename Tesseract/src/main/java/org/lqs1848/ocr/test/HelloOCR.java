@@ -34,10 +34,7 @@ public class HelloOCR {
         api.SetVariable("tessedit_char_whitelist", "0123456789");
 //	        api.SetVariable("classify_bln_numeric_mode", "1");
         
-        File f = new File(picPath);
-        byte[] bts = getFileByteArray(f);
-        PIX image = lept.pixReadMem(bts, bts.length);
-        //PIX image = lept.pixRead(picPath);
+        PIX image = lept.pixRead(picPath);
         api.SetImage(image);
         outText = api.GetUTF8Text();
         System.out.println("OCR output:\n" + outText.getString());
